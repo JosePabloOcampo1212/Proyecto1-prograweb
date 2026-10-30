@@ -103,6 +103,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Constantes.cs" />
+    <Compile Include="Models\Entidades\Comentario.cs" />
+    <Compile Include="Models\Entidades\EstadoTicket.cs" />
+    <Compile Include="Models\Entidades\Ticket.cs" />
+    <Compile Include="Models\Entidades\Usuario.cs" />
+    <Compile Include="Models\ViewModels\LoginViewModel.cs" />
+    <Compile Include="Models\ViewModels\ReporteViewModel.cs" />
+    <Compile Include="Models\ViewModels\TicketFormViewModel.cs" />
+    <Compile Include="Models\ViewModels\TicketViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -122,7 +131,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
