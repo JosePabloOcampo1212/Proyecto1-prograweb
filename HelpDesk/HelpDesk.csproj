@@ -100,6 +100,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Datos\ComentarioRepositorio.cs" />
+    <Compile Include="Datos\Conexion.cs" />
+    <Compile Include="Datos\EstadoTicketRepositorio.cs" />
+    <Compile Include="Datos\ReporteRepositorio.cs" />
+    <Compile Include="Datos\TicketRepositorio.cs" />
+    <Compile Include="Datos\UsuarioRepositorio.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
