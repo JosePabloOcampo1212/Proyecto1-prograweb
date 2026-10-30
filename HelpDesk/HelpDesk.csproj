@@ -109,6 +109,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\DatosJson.cs" />
+    <Compile Include="Helpers\Presentacion.cs" />
+    <Compile Include="Helpers\RespuestaError.cs" />
     <Compile Include="Models\Constantes.cs" />
     <Compile Include="Models\Entidades\Comentario.cs" />
     <Compile Include="Models\Entidades\EstadoTicket.cs" />
