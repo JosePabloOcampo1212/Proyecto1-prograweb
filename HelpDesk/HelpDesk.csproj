@@ -101,6 +101,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CuentaController.cs" />
     <Compile Include="Datos\ComentarioRepositorio.cs" />
     <Compile Include="Datos\Conexion.cs" />
     <Compile Include="Datos\EstadoTicketRepositorio.cs" />
@@ -140,6 +141,7 @@
     <Content Include="Scripts\app\comun.js" />
     <Content Include="Scripts\lib\bootstrap.bundle.min.js" />
     <Content Include="Scripts\lib\jquery.min.js" />
+    <Content Include="Views\Cuenta\Login.cshtml" />
     <Content Include="Views\Shared\Mensaje.cshtml" />
     <Content Include="Views\Shared\_ErroresGenerales.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
