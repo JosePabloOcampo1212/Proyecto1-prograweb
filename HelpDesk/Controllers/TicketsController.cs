@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
+using HelpDesk.Models.Entidades;
 using HelpDesk.Models.ViewModels;
 using HelpDesk.Negocio;
 using HelpDesk.Seguridad;
@@ -71,6 +73,31 @@ namespace HelpDesk.Controllers
                 ModelState.AddModelError(string.Empty, ex.Message);
                 return View(modelo);
             }
+        }
+
+        // GET: /Tickets/Detalle/5
+        [HttpGet]
+        public ActionResult Detalle(int? id)
+        {
+            if (!id.HasValue)
+            {
+                return RedirectToAction("Index");
+            }
+
+            var usuario = UsuarioActual;
+            var ticket = _servicio.ObtenerConAcceso(id.Value, usuario);
+
+            var modelo = new TicketDetalleViewModel
+            {
+                Ticket = ticket,
+                IdUsuarioActual = usuario.Id,
+                EsAdministrador = usuario.EsAdministrador,
+                PuedeEditar = _servicio.PuedeEditar(ticket, usuario),
+                PuedeComentar = ComentarioServicio.PuedeComentar(ticket),
+                PersonalSoporte = usuario.EsAdministrador ? _servicio.ListarPersonalSoporte() : new List<Usuario>(),
+                EstadosSiguientes = usuario.EsAdministrador ? _servicio.EstadosSiguientes(ticket.IdEstado) : new List<EstadoTicket>()
+            };
+            return View(modelo);
         }
 
         // GET: /Tickets/Editar/5

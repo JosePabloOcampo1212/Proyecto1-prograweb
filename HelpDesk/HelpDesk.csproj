@@ -101,6 +101,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ComentariosController.cs" />
     <Compile Include="Controllers\CuentaController.cs" />
     <Compile Include="Controllers\TicketsController.cs" />
     <Compile Include="Datos\ComentarioRepositorio.cs" />
@@ -140,6 +141,7 @@
     <Content Include="Content\site.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\app\busqueda.js" />
+    <Content Include="Scripts\app\comentarios.js" />
     <Content Include="Scripts\app\comun.js" />
     <Content Include="Scripts\lib\bootstrap.bundle.min.js" />
     <Content Include="Scripts\lib\jquery.min.js" />
@@ -148,6 +150,7 @@
     <Content Include="Views\Shared\_ErroresGenerales.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Tickets\Crear.cshtml" />
+    <Content Include="Views\Tickets\Detalle.cshtml" />
     <Content Include="Views\Tickets\Editar.cshtml" />
     <Content Include="Views\Tickets\Index.cshtml" />
     <Content Include="Views\Tickets\_CamposTicket.cshtml" />
