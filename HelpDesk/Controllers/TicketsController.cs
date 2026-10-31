@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
+using HelpDesk.Helpers;
+using HelpDesk.Models;
 using HelpDesk.Models.Entidades;
 using HelpDesk.Models.ViewModels;
 using HelpDesk.Negocio;
@@ -146,6 +148,57 @@ namespace HelpDesk.Controllers
                 ModelState.AddModelError(string.Empty, ex.Message);
                 return View(modelo);
             }
+        }
+
+        // POST: /Tickets/Asignar
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Autorizar(RolesSistema.Administrador)]
+        public JsonResult Asignar(int id, int? idUsuarioAsignado)
+        {
+            if (!idUsuarioAsignado.HasValue)
+            {
+                throw new ReglaNegocioException("Seleccione la persona de soporte a la que se asignará el ticket.");
+            }
+
+            var ticket = _servicio.Asignar(id, idUsuarioAsignado.Value, UsuarioActual);
+            return Json(new
+            {
+                exito = true,
+                mensaje = "Ticket asignado a " + ticket.NombreAsignado + ".",
+                ticket = DatosJson.Ticket(ticket, _servicio.EstadosSiguientes(ticket.IdEstado))
+            });
+        }
+
+        // POST: /Tickets/CambiarEstado
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Autorizar(RolesSistema.Administrador)]
+        public JsonResult CambiarEstado(int id, int? idEstado)
+        {
+            if (!idEstado.HasValue)
+            {
+                throw new ReglaNegocioException("Seleccione el nuevo estado.");
+            }
+
+            var ticket = _servicio.CambiarEstado(id, idEstado.Value, UsuarioActual);
+            return Json(new
+            {
+                exito = true,
+                mensaje = "El ticket pasó a " + ticket.NombreEstado + ".",
+                ticket = DatosJson.Ticket(ticket, _servicio.EstadosSiguientes(ticket.IdEstado))
+            });
+        }
+
+        // POST: /Tickets/Eliminar/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Autorizar(RolesSistema.Administrador)]
+        public ActionResult Eliminar(int id)
+        {
+            _servicio.Eliminar(id, UsuarioActual);
+            TempData["Mensaje"] = "El ticket #" + id + " y sus comentarios se eliminaron.";
+            return RedirectToAction("Index");
         }
     }
 }

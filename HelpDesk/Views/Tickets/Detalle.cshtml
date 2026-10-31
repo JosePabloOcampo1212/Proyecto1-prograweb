@@ -10,7 +10,9 @@
 <div class="row g-4" id="detalleTicket"
      data-id="@t.Id"
      data-url-listar="@Url.Action("Listar", "Comentarios")"
-     data-url-agregar="@Url.Action("Agregar", "Comentarios")">
+     data-url-agregar="@Url.Action("Agregar", "Comentarios")"
+     data-url-asignar="@Url.Action("Asignar", "Tickets")"
+     data-url-estado="@Url.Action("CambiarEstado", "Tickets")">
 
     <div class="col-lg-8">
         <div class="card mb-4">
@@ -81,9 +83,60 @@
                 </li>
             </ul>
         </div>
+
+        @if (Model.EsAdministrador)
+        {
+            <div class="card border-primary-subtle" id="panelAdmin" data-cerrado="@(t.IdEstado == Estados.Cerrado ? "true" : "false")">
+                <div class="card-header bg-primary-subtle"><h2 class="h6 mb-0">Gestión del ticket</h2></div>
+                <div class="card-body">
+                    <label for="selectAsignado" class="form-label fw-semibold">Asignar a</label>
+                    <div class="input-group mb-2">
+                        <select id="selectAsignado" class="form-select">
+                            @if (!t.IdUsuarioAsignado.HasValue)
+                            {
+                                <option value="">Seleccione...</option>
+                            }
+                            @foreach (var persona in Model.PersonalSoporte)
+                            {
+                                <option value="@persona.Id" selected="@(persona.Id == t.IdUsuarioAsignado)">@(persona.Nombre + (persona.Id == Model.IdUsuarioActual ? " (yo)" : ""))</option>
+                            }
+                        </select>
+                        <button class="btn btn-outline-primary" id="btnAsignar" type="button">Asignar</button>
+                    </div>
+                    <button class="btn btn-link btn-sm p-0" id="btnAsignarme" type="button" data-id-usuario="@Model.IdUsuarioActual">Asignarme este ticket</button>
+
+                    <hr />
+
+                    <div class="form-label fw-semibold">Cambiar estado</div>
+                    <div id="botonesEstado" class="d-grid gap-2">
+                        @foreach (var estado in Model.EstadosSiguientes)
+                        {
+                            <button type="button" class="btn btn-outline-secondary btn-estado" data-id-estado="@estado.Id">Pasar a @estado.Nombre</button>
+                        }
+                    </div>
+                    <div id="sinTransiciones" class="text-muted small @(Model.EstadosSiguientes.Count == 0 ? "" : "d-none")">
+                        El ticket está cerrado. No admite más cambios de estado.
+                    </div>
+
+                    <div id="mensajeGestion" class="mt-3" aria-live="polite"></div>
+
+                    <hr />
+
+                    @using (Html.BeginForm("Eliminar", "Tickets", new { id = t.Id }, FormMethod.Post, new { id = "formEliminar" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-outline-danger btn-sm w-100">Eliminar ticket</button>
+                    }
+                </div>
+            </div>
+        }
     </div>
 </div>
 
 @section scripts {
     <script src="~/Scripts/app/comentarios.js"></script>
+    @if (Model.EsAdministrador)
+    {
+        <script src="~/Scripts/app/gestionTicket.js"></script>
+    }
 }

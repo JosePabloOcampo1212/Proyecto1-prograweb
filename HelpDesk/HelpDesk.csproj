@@ -143,6 +143,7 @@
     <Content Include="Scripts\app\busqueda.js" />
     <Content Include="Scripts\app\comentarios.js" />
     <Content Include="Scripts\app\comun.js" />
+    <Content Include="Scripts\app\gestionTicket.js" />
     <Content Include="Scripts\lib\bootstrap.bundle.min.js" />
     <Content Include="Scripts\lib\jquery.min.js" />
     <Content Include="Views\Cuenta\Login.cshtml" />
