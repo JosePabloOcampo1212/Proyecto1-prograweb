@@ -121,6 +121,12 @@
     <Compile Include="Models\ViewModels\ReporteViewModel.cs" />
     <Compile Include="Models\ViewModels\TicketFormViewModel.cs" />
     <Compile Include="Models\ViewModels\TicketViewModels.cs" />
+    <Compile Include="Negocio\AutenticacionServicio.cs" />
+    <Compile Include="Negocio\ComentarioServicio.cs" />
+    <Compile Include="Negocio\Excepciones.cs" />
+    <Compile Include="Negocio\FlujoEstados.cs" />
+    <Compile Include="Negocio\ReporteServicio.cs" />
+    <Compile Include="Negocio\TicketServicio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Seguridad\AutorizarAttribute.cs" />
     <Compile Include="Seguridad\HashContrasena.cs" />
