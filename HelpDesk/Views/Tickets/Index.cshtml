@@ -1,0 +1,46 @@
+﻿@model TicketIndexViewModel
+@{
+    ViewBag.Title = Model.EsAdministrador ? "Todos los tickets" : "Mis tickets";
+}
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+    <div>
+        <h1 class="h3 mb-0">@ViewBag.Title</h1>
+        <p class="text-muted mb-0 small">
+            @(Model.EsAdministrador ? "Solicitudes registradas por todos los colaboradores." : "Solicitudes que usted ha registrado y su estado actual.")
+        </p>
+    </div>
+    <a class="btn btn-primary" href="@Url.Action("Crear")">Nuevo ticket</a>
+</div>
+
+<div class="card mb-3">
+    <div class="card-body">
+        <form id="formBusqueda" class="row g-2 align-items-end" action="@Url.Action("Buscar")" method="get" autocomplete="off">
+            <div class="col-md-7">
+                <label for="texto" class="form-label">Buscar por título o número</label>
+                <input type="search" id="texto" name="texto" class="form-control" placeholder="Ejemplo: impresora o 12" maxlength="100" />
+            </div>
+            <div class="col-md-3">
+                <label for="idEstado" class="form-label">Estado</label>
+                <select id="idEstado" name="idEstado" class="form-select">
+                    <option value="">Todos</option>
+                    @foreach (var estado in Model.Estados)
+                    {
+                        <option value="@estado.Id">@estado.Nombre</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-2">
+                <button type="button" id="btnLimpiar" class="btn btn-outline-secondary w-100">Limpiar</button>
+            </div>
+        </form>
+        <div id="estadoBusqueda" class="form-text mt-2" aria-live="polite"></div>
+    </div>
+</div>
+
+<div id="contenedorTabla">
+    @Html.Partial("_TablaTickets", Model.Tabla)
+</div>
+
+@section scripts {
+    <script src="~/Scripts/app/busqueda.js"></script>
+}
