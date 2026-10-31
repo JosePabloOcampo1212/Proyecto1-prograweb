@@ -1,0 +1,25 @@
+﻿@model TicketFormViewModel
+@{
+    ViewBag.Title = "Editar ticket #" + Model.Id;
+}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <h1 class="h3 mb-1">Editar ticket #@Model.Id</h1>
+        <p class="text-muted">Solo se puede editar mientras el ticket esté en estado Abierto.</p>
+        <div class="card">
+            <div class="card-body p-4">
+                @using (Html.BeginForm("Editar", "Tickets", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.Partial("_ErroresGenerales")
+                    @Html.Partial("_CamposTicket", Model)
+
+                    <div class="d-flex justify-content-end gap-2">
+                        <a class="btn btn-outline-secondary" href="@Url.Action("Detalle", new { id = Model.Id })">Cancelar</a>
+                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

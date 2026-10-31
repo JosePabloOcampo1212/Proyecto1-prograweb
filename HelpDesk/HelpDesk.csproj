@@ -147,7 +147,10 @@
     <Content Include="Views\Shared\Mensaje.cshtml" />
     <Content Include="Views\Shared\_ErroresGenerales.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Tickets\Crear.cshtml" />
+    <Content Include="Views\Tickets\Editar.cshtml" />
     <Content Include="Views\Tickets\Index.cshtml" />
+    <Content Include="Views\Tickets\_CamposTicket.cshtml" />
     <Content Include="Views\Tickets\_TablaTickets.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Web.config" />

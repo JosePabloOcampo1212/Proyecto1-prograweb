@@ -1,0 +1,25 @@
+﻿@model TicketFormViewModel
+@{
+    ViewBag.Title = "Nuevo ticket";
+}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <h1 class="h3 mb-1">Nuevo ticket de soporte</h1>
+        <p class="text-muted">Describa la incidencia para que el área de soporte técnico pueda atenderla.</p>
+        <div class="card">
+            <div class="card-body p-4">
+                @using (Html.BeginForm("Crear", "Tickets", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.Partial("_ErroresGenerales")
+                    @Html.Partial("_CamposTicket", Model)
+
+                    <div class="d-flex justify-content-end gap-2">
+                        <a class="btn btn-outline-secondary" href="@Url.Action("Index")">Cancelar</a>
+                        <button type="submit" class="btn btn-primary">Registrar ticket</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
