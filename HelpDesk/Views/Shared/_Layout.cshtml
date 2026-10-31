@@ -1,0 +1,96 @@
+﻿@{
+    var usuario = User as UsuarioPrincipal;
+    var controlador = (string)ViewContext.RouteData.Values["controller"];
+    var accion = (string)ViewContext.RouteData.Values["action"];
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title - Help Desk</title>
+    <link rel="stylesheet" href="~/Content/lib/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/site.css" />
+</head>
+<body>
+    @if (usuario != null)
+    {
+        <nav class="navbar navbar-expand-lg navbar-dark barra-principal">
+            <div class="container">
+                <a class="navbar-brand fw-semibold" href="@Url.Action("Index", "Tickets")">
+                    <svg class="marca-logo" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <defs>
+                            <linearGradient id="geoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#4f46e5;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <path d="M 24 8 L 32 18 L 16 18 Z" fill="url(#geoGrad)"/>
+                        <rect x="12" y="22" width="8" height="16" fill="url(#geoGrad)" opacity="0.8"/>
+                        <rect x="28" y="22" width="8" height="16" fill="url(#geoGrad)" opacity="0.6"/>
+                        <circle cx="24" cy="30" r="4" fill="#fff" opacity="0.3"/>
+                    </svg>
+                    Help Desk
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal"
+                        aria-controls="menuPrincipal" aria-expanded="false" aria-label="Mostrar menú">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="menuPrincipal">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link @(controlador == "Tickets" && accion != "Crear" ? "active" : "")" href="@Url.Action("Index", "Tickets")">
+                                @(usuario.EsAdministrador ? "Todos los tickets" : "Mis tickets")
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(controlador == "Tickets" && accion == "Crear" ? "active" : "")" href="@Url.Action("Crear", "Tickets")">Nuevo ticket</a>
+                        </li>
+                        @if (usuario.EsAdministrador)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link @(controlador == "Reportes" ? "active" : "")" href="@Url.Action("Index", "Reportes")">Reportes</a>
+                            </li>
+                        }
+                    </ul>
+                    <div class="d-flex align-items-center gap-3">
+                        <span class="text-white-50 small">
+                            <span class="text-white">@usuario.Nombre</span>
+                            <span class="badge @(usuario.EsAdministrador ? "text-bg-info" : "text-bg-light") ms-1">@usuario.Rol</span>
+                        </span>
+                        @using (Html.BeginForm("Salir", "Cuenta", FormMethod.Post, new { @class = "m-0" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-outline-light btn-sm">Salir</button>
+                        }
+                    </div>
+                </div>
+            </div>
+        </nav>
+    }
+
+    <main class="container py-4">
+        @if (TempData["Mensaje"] != null)
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                @TempData["Mensaje"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+            </div>
+        }
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                @TempData["Error"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+            </div>
+        }
+
+        @RenderBody()
+    </main>
+
+    <script src="~/Scripts/lib/jquery.min.js"></script>
+    <script src="~/Scripts/lib/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/app/comun.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

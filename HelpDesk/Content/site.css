@@ -1,0 +1,117 @@
+﻿:root {
+    --hd-azul: #1f4e79;
+    --hd-azul-oscuro: #163a5a;
+    --hd-fondo: #f3f5f8;
+}
+
+body {
+    background-color: var(--hd-fondo);
+}
+
+.barra-principal {
+    background-color: var(--hd-azul);
+}
+
+.marca-icono {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: .5rem;
+    background-color: #fff;
+    color: var(--hd-azul);
+    font-size: .8rem;
+    font-weight: 700;
+    margin-right: .35rem;
+}
+
+.marca-logo {
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-right: .5rem;
+    display: inline-block;
+    vertical-align: middle;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    transition: transform 0.3s ease;
+}
+
+.navbar-brand:hover .marca-logo {
+    transform: scale(1.05) rotate(-5deg);
+}
+
+.marca-logo-login {
+    width: 4rem;
+    height: 4rem;
+    display: block;
+    margin: 0 auto;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+}
+
+.marca-icono-grande {
+    width: 3.5rem;
+    height: 3.5rem;
+    font-size: 1.2rem;
+    background-color: var(--hd-azul);
+    color: #fff;
+    margin-right: 0;
+}
+
+.btn-primary {
+    --bs-btn-bg: var(--hd-azul);
+    --bs-btn-border-color: var(--hd-azul);
+    --bs-btn-hover-bg: var(--hd-azul-oscuro);
+    --bs-btn-hover-border-color: var(--hd-azul-oscuro);
+    --bs-btn-active-bg: var(--hd-azul-oscuro);
+    --bs-btn-disabled-bg: var(--hd-azul);
+    --bs-btn-disabled-border-color: var(--hd-azul);
+}
+
+.texto-multilinea {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.comentario {
+    background-color: #fff;
+}
+
+.comentario-soporte {
+    background-color: #eef5fc;
+    border-color: #c9ddf1 !important;
+}
+
+.comentario-nuevo {
+    animation: resaltar 2s ease-out;
+}
+
+@keyframes resaltar {
+    from { box-shadow: 0 0 0 .25rem rgba(25, 135, 84, .35); }
+    to   { box-shadow: 0 0 0 0 rgba(25, 135, 84, 0); }
+}
+
+.indicador {
+    border: 1px solid var(--bs-border-color);
+    border-radius: .5rem;
+    padding: .75rem .5rem;
+    height: 100%;
+}
+
+.indicador-valor {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.indicador-etiqueta {
+    font-size: .8rem;
+    color: var(--bs-secondary-color);
+}
+
+
+.input-validation-error {
+    border-color: var(--bs-danger);
+}
+
+.field-validation-valid {
+    display: none;
+}

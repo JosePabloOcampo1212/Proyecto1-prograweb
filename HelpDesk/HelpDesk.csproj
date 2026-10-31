@@ -100,6 +100,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Datos\ComentarioRepositorio.cs" />
     <Compile Include="Datos\Conexion.cs" />
     <Compile Include="Datos\EstadoTicketRepositorio.cs" />
@@ -133,7 +134,16 @@
     <Compile Include="Seguridad\UsuarioPrincipal.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\lib\bootstrap.min.css" />
+    <Content Include="Content\site.css" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\app\comun.js" />
+    <Content Include="Scripts\lib\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\lib\jquery.min.js" />
+    <Content Include="Views\Shared\Mensaje.cshtml" />
+    <Content Include="Views\Shared\_ErroresGenerales.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Views\web.config" />
   </ItemGroup>
@@ -148,7 +158,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,0 +1,18 @@
+﻿@model MensajeViewModel
+@{
+    ViewBag.Title = Model.Titulo;
+}
+<div class="row justify-content-center mt-4">
+    <div class="col-lg-7">
+        <div class="card shadow-sm">
+            <div class="card-body p-4">
+                <h1 class="h4">@Model.Titulo</h1>
+                <p class="mb-4">@Model.Texto</p>
+                <div class="d-flex gap-2">
+                    <a class="btn btn-primary" href="@Url.Action("Index", "Tickets")">Ir al listado de tickets</a>
+                    <button type="button" class="btn btn-outline-secondary" onclick="history.back()">Volver</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
